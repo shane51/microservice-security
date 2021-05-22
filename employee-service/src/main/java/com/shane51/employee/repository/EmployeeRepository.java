@@ -1,36 +1,62 @@
 package com.shane51.employee.repository;
 
 import com.shane51.employee.model.Employee;
+import com.shane51.employee.model.Role;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
+@Repository
 public class EmployeeRepository {
-    private List<Employee> employees = new ArrayList<>();
+
+    @Autowired
+    private DataSource dataSource;
+
+    public List<Employee> filterByUsername(String name) {
+
+        String sql = "select * from employee where name ='" + name + "'";
+
+        try (Connection c = dataSource.getConnection();
+             ResultSet rs = c.createStatement().executeQuery(sql)) {
+            List<Employee> employees = new ArrayList<>();
+            while (rs.next()) {
+                employees.add(new Employee(
+                        rs.getLong("id"),
+                        rs.getString("name"),
+                        rs.getString("password"),
+                        Role.valueOf(rs.getString("role"))
+                ));
+            }
+            return employees;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
 
     public Employee add(Employee employee) {
-        employee.setId((long) (employees.size() + 1));
-        employees.add(employee);
-        return employee;
+        return null;
     }
 
     public Employee findById(Long id) {
-        Optional<Employee> employee = employees.stream().filter(p -> p.getId().equals(id)).findFirst();
-        return employee.orElse(null);
+        return null;
     }
 
     public List<Employee> findAll() {
-        return employees;
+        return null;
     }
 
     public List<Employee> findByDepartment(Long departmentId) {
-        return employees.stream().filter(p -> p.getDepartmentId().equals(departmentId)).collect(Collectors.toList());
-
+        return null;
     }
 
     public List<Employee> findByOrganization(Long organizationId) {
-        return employees.stream().filter(p -> p.getOrganizationId().equals(organizationId)).collect(Collectors.toList());
+        return null;
     }
 }

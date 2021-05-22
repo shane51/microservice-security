@@ -2,6 +2,11 @@ package com.shane51.employee.controller;
 
 import com.shane51.employee.model.Employee;
 import com.shane51.employee.repository.EmployeeRepository;
+import com.shane51.employee.repository.jdbc.EmployeeRepositoryJdbcSafe;
+import com.shane51.employee.repository.jdbc.EmployeeRepositoryJdbcUnSafe;
+import com.shane51.employee.repository.jdbc.GlobalRepositoryJdbc;
+import com.shane51.employee.repository.jpa.EmployeeRepositoryJpaSafe;
+import com.shane51.employee.repository.jpa.EmployeeRepositoryJpaUnSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +22,67 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeRepository repository;
+
+    @Autowired
+    private EmployeeRepositoryJdbcUnSafe repositoryJdbcUnSafe;
+
+    @Autowired
+    private EmployeeRepositoryJdbcSafe repositoryJdbcSafe;
+
+    @Autowired
+    private EmployeeRepositoryJpaUnSafe repositoryJpaUnSafe;
+
+    @Autowired
+    private EmployeeRepositoryJpaSafe repositoryJpaSafe;
+
+    @Autowired
+    private GlobalRepositoryJdbc globalRepositoryJdbc;
+
+    @GetMapping("/filterUserUnSafe")
+    public List<Employee> filterByUsernameUnSafe(@RequestParam(value = "name") String name) {
+        return repository.filterByUsername(name);
+    }
+
+    @GetMapping("/filterUserJdbcUnSafe")
+    public List<Employee> filterByUsernameJdbcUnSafe(@RequestParam(value = "name") String name) {
+        return repositoryJdbcUnSafe.filterByUsername(name);
+    }
+
+    @GetMapping("/filterUserJdbcSafe")
+    public List<Employee> filterByUsernameJdbcSafe(@RequestParam(value = "name") String name) {
+        return repositoryJdbcSafe.filterByUsername(name);
+    }
+
+    @GetMapping("/filterUserJpaUnSafe")
+    public List<Employee> filterByUsernameJpaUnSafe(@RequestParam(value = "name") String name) {
+        return repositoryJpaUnSafe.filterByUsername(name);
+    }
+
+    @GetMapping("/filterUserJpaSafe")
+    public List<Employee> filterByUsernameJpaSafe(@RequestParam(value = "name") String name) {
+        return repositoryJpaSafe.filterByUsername(name);
+    }
+
+    @GetMapping("/filterUserJpaStoredProcedureUnSafe")
+    public List<Employee> filterByUsernameJpaStoredProcedureUnSafe(@RequestParam(value = "name") String name) {
+        return repositoryJpaUnSafe.filterByUsernameStoredProcedure(name);
+    }
+
+
+    @GetMapping("/filterUserJpaStoredProcedureSafe")
+    public List<Employee> filterByUsernameJpaStoredProcedureSafe(@RequestParam(value = "name") String name) {
+        return repositoryJpaSafe.filterByUsernameStoredProcedure(name);
+    }
+
+    @GetMapping("/loginJdbcUnSafe")
+    public Employee loginJdbcUnSafe(@RequestParam(value = "name") String name, @RequestParam(value = "password") String password) {
+        return globalRepositoryJdbc.login(name, password);
+    }
+
+    @GetMapping("/filterUserGlobalAccessUnSafe")
+    public List<Employee> filterByUsernameGlobalAccessUnSafe(@RequestParam(value = "name") String name) {
+        return globalRepositoryJdbc.filterByUsername(name);
+    }
 
     @PostMapping("/")
     public Employee add(@RequestBody Employee employee) {

@@ -1,5 +1,8 @@
 package com.shane51.employee.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Employee {
 
     private Long id;
@@ -17,6 +20,13 @@ public class Employee {
         this.name = name;
         this.age = age;
         this.position = position;
+    }
+
+    public Employee(long id, String name, String password, Role role) {
+    }
+
+    public Employee(String name, String secret, Role role) {
+
     }
 
     public Long getId() {

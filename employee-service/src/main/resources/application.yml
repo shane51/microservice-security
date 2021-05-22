@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+       format_sql: true
+  datasource-empdb:
+    url: jdbc:mysql://127.0.0.1:3306/employees
+    username: empdb_user
+    password: 87a98asjhas8
+  datasource-globalaccess:
+    url: jdbc:mysql://127.0.0.1:3306/employees
+    username: globalaccess_user
+    password: 789as8asjk
