@@ -1,0 +1,16 @@
+@startuml
+entity Employee {
+  - Long id
+  - String name
+  - String password
+  - Role role
+  - int age
+  - String position
+  - Long organizationId
+  - Long departmentId
+}
+
+enum Role {
+
+}
+@enduml

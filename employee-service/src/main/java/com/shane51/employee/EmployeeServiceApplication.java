@@ -27,7 +27,7 @@ public class EmployeeServiceApplication {
     public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.shane51.employeeservice.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.shane51.employee.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(new ApiInfoBuilder().version("1.0").title("Empoylee API").description("Documentation Employee V1.0").build());

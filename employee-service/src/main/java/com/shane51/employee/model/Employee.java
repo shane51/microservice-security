@@ -1,22 +1,38 @@
 package com.shane51.employee.model;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "employee")
 public class Employee {
 
-    private Long id;
+    private @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id" )
+    Long id;
+    @Column(name = "name" )
     private String name;
+
+    @JsonIgnore
+    @Column(name = "password" )
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role" )
     private Role role;
-    private int age;
+    @Column(name = "age" )
+    private Integer age;
+    @Column(name = "organizationId" )
     private Long organizationId;
+    @Column(name = "departmentId" )
     private Long departmentId;
 
     public Employee() {}
 
-    public Employee(Long id, String name, String password, Role role, int age, Long organizationId, Long departmentId) {
+    public Employee(Long id, String name, String password, Role role, Integer age, Long organizationId, Long departmentId) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -27,10 +43,16 @@ public class Employee {
     }
 
     public Employee(long id, String name, String password, Role role) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.role = role;
     }
 
     public Employee(String name, String secret, Role role) {
-
+        this.name = name;
+        this.password = secret;
+        this.role = role;
     }
 
     public Long getId() {
@@ -65,11 +87,11 @@ public class Employee {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
