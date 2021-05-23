@@ -70,7 +70,7 @@ public class Configuration {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(empdbDataSource());
 
-        em.setPackagesToScan(new String[]{"com.okta.blog.sqlinjection"});
+        em.setPackagesToScan(new String[]{"com.shane51.employee"});
         em.setPersistenceUnitName(JPA_EMPDB_PERSITENCE_UNIT);
 
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
