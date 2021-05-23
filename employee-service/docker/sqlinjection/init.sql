@@ -12,6 +12,9 @@ CREATE TABLE `employee` (
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `role` varchar(255) DEFAULT NULL,
+  `age` int DEFAULT NULL,
+  `organizationId` bigint DEFAULT NULL,
+  `departmentId` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
