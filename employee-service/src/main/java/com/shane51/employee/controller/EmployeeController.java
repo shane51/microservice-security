@@ -101,7 +101,7 @@ public class EmployeeController {
     @GetMapping("/")
     public List<Employee> findAll() {
         LOGGER.info("Employee find all");
-        return repository.findAll();
+        return repositoryJdbcSafe.findAll();
     }
 
     @GetMapping("/department/{departmentId}")

@@ -16,5 +16,6 @@ public abstract class EmployeeRepositoryJdbc {
     protected JdbcTemplate jdbcTemplate;
 
     public abstract List<Employee> filterByUsername(String name);
+    public abstract List<Employee> findAll();
 
 }

@@ -13,5 +13,11 @@ public class EmployeeRepositoryJdbcUnSafe extends EmployeeRepositoryJdbc {
         return jdbcTemplate.query("select * from employee where name ='" + name + "'", new EmployeeRowMapper());
     }
 
+    @Override
+    public List<Employee> findAll() {
+        return jdbcTemplate.query("select * from employee", new EmployeeRowMapper());
+    }
+
+
 
 }
