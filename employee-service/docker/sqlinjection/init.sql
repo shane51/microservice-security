@@ -18,11 +18,8 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`id`)
 );
 
-insert into employee values ( 1111,34,1,"John Smith",1,"pass","STAFF");
-insert into employee values ( 1112,37,1,"Darren Hamilton",1,"pass","MANAGER");
-insert into employee values ( 1113,26,1,"Anna London",1,"pass","STAFF");
-insert into employee values ( 1114,39,1,"Patrick Dempsey", 2,"pass", "STAFF");
-insert into employee values ( 1115,27,1,"Kevin Price", 1,"pass", "STAFF");
+insert into employee values ( 1111,"John Smith","pass","STAFF",34,1,1);
+
 DELIMITER $$
 CREATE PROCEDURE `filterByUsernameStoredProcedureUnSafe` (in p_name varchar(1000))
 begin
