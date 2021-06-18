@@ -12,6 +12,7 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testImplementation 'org.zaproxy:zap-clientapi:1.9.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
