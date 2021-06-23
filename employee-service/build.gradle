@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "org.owasp.dependencycheck" version "6.2.2"
 }
 
 group = 'com.shane51'
@@ -54,4 +55,18 @@ test {
 
 bootRun {
     jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+}
+
+dependencyCheck {
+    autoUpdate=false
+
+    cve {
+        urlModified="http://127.0.0.1/nvdcve-1.1-modified.json.gz"
+        urlBase="http://127.0.0.1/nvdcve-1.1-2021.json.gz"
+    }
+    analyzers {
+        retirejs {
+            retireJsUrl="file:///${rootProject.projectDir.absolutePath}/jsrepository.json"
+        }
+    }
 }
